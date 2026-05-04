@@ -80,10 +80,10 @@ export function DropSignup() {
                 <div className="flex flex-col items-center gap-3 py-4">
                   <CheckCircle className="w-8 h-8 text-accent" />
                   <p className="text-sm font-mono tracking-[0.1em] uppercase text-accent">
-                    You're on the list.
+                    You&apos;re on the list.
                   </p>
                   <p className="text-xs text-muted-foreground">
-                    We'll hit you when the next drop goes live.
+                    We&apos;ll hit you when the next drop goes live.
                   </p>
                 </div>
               ) : (

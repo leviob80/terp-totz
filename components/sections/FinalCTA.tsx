@@ -45,7 +45,7 @@ export function FinalCTA() {
           </h2>
           <p className="text-sm text-muted-foreground leading-relaxed max-w-md mx-auto mb-10">
             New terpenes. New characters. New drops. The universe is expanding — and
-            it still won't restock.
+            it still won&apos;t restock.
           </p>
         </motion.div>
 

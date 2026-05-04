@@ -53,7 +53,7 @@ export function BrandStory() {
               How a nug<br />got a face.
             </h2>
             <p className="text-sm text-muted-foreground leading-relaxed max-w-xs">
-              Terp Totz isn't just merch. It's a universe built from the ground up —
+              Terp Totz isn&apos;t just merch. It&apos;s a universe built from the ground up —
               one terpene, one character, one drop at a time.
             </p>
           </motion.div>
