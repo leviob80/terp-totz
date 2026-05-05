@@ -52,7 +52,7 @@ export function FeaturedCharacters() {
         </div>
 
         {/* Character grid */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-5">
           {season1Crew.map((character, i) => (
             <motion.div
               key={character.id}

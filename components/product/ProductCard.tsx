@@ -28,13 +28,13 @@ export function ProductCard({ product }: ProductCardProps) {
 
   return (
     <motion.div
-      whileHover={{ y: -3 }}
+      whileHover={{ y: -4 }}
       transition={{ duration: 0.15, ease: 'easeOut' }}
       className="group"
     >
       <Link href={`/products/${product.slug}`} className="block">
         {/* Image */}
-        <div className="relative aspect-square overflow-hidden bg-secondary mb-4">
+        <div className="relative aspect-square overflow-hidden bg-secondary mb-0">
           {product.images[0] ? (
             <Image
               src={product.images[0]}
@@ -56,34 +56,65 @@ export function ProductCard({ product }: ProductCardProps) {
             </div>
           )}
 
+          {/* Character terpene tag — top right */}
+          {product.character && (
+            <div className="absolute top-3 right-3">
+              <span
+                className="text-[8px] font-mono tracking-[0.18em] uppercase border px-1.5 py-0.5 bg-background/80 backdrop-blur-sm"
+                style={{
+                  color: product.character.accentColor,
+                  borderColor: `${product.character.accentColor}40`,
+                }}
+              >
+                {product.character.terpene}
+              </span>
+            </div>
+          )}
+
           {/* Quick add overlay */}
           {canQuickAdd && (
             <div className="absolute inset-x-0 bottom-0 translate-y-full group-hover:translate-y-0 transition-transform duration-200">
               <button
                 onClick={handleQuickAdd}
-                className="w-full bg-accent text-accent-foreground text-[10px] tracking-[0.2em] uppercase font-bold py-3 hover:bg-accent/85 transition-colors"
+                className="w-full bg-accent text-accent-foreground text-[10px] tracking-[0.25em] uppercase font-bold py-3.5 hover:bg-accent/85 transition-colors"
               >
-                Add to Cart
+                Quick Add
               </button>
             </div>
           )}
         </div>
 
+        {/* Terpene color bar */}
+        {product.character && (
+          <div
+            className="h-0.5 w-full transition-opacity duration-300 opacity-40 group-hover:opacity-100"
+            style={{ backgroundColor: product.character.accentColor }}
+          />
+        )}
+
         {/* Info */}
-        <div className="space-y-1">
+        <div className="pt-3 pb-1 space-y-0.5">
+          {product.character && (
+            <p
+              className="text-[9px] font-mono tracking-[0.2em] uppercase"
+              style={{ color: `${product.character.accentColor}90` }}
+            >
+              {product.character.name}
+            </p>
+          )}
           <h3
             className="text-base text-foreground uppercase leading-tight"
-            style={{ fontFamily: 'var(--font-bebas), Impact, sans-serif', letterSpacing: '0.04em' }}
+            style={{ fontFamily: 'var(--font-bebas), Impact, sans-serif', letterSpacing: '0.04em', fontSize: '1.05rem' }}
           >
             {product.name}
           </h3>
-          <p className="text-[11px] text-muted-foreground line-clamp-1 uppercase tracking-[0.05em]">
+          <p className="text-[10px] text-muted-foreground/60 line-clamp-1 uppercase tracking-[0.05em]">
             {product.shortDescription}
           </p>
-          <div className="flex items-center gap-2 pt-1">
-            <span className="text-sm font-medium text-foreground">{formatPrice(product.price)}</span>
+          <div className="flex items-center gap-2.5 pt-1.5">
+            <span className="text-sm font-bold text-foreground">{formatPrice(product.price)}</span>
             {product.compareAtPrice && (
-              <span className="text-xs text-muted-foreground line-through">
+              <span className="text-xs text-muted-foreground/50 line-through">
                 {formatPrice(product.compareAtPrice)}
               </span>
             )}
@@ -92,17 +123,17 @@ export function ProductCard({ product }: ProductCardProps) {
       </Link>
 
       {hasVariants && !isSoldOut && !isComingSoon && (
-        <Button asChild variant="outline" size="sm" className="w-full mt-3">
+        <Button asChild variant="outline" size="sm" className="w-full mt-3 font-mono tracking-[0.1em] text-[10px] uppercase">
           <Link href={`/products/${product.slug}`}>Select Size</Link>
         </Button>
       )}
       {isSoldOut && (
-        <Button variant="ghost" size="sm" className="w-full mt-3 cursor-default opacity-40" disabled>
-          Sold Out
-        </Button>
+        <p className="w-full mt-2 text-center text-[9px] font-mono tracking-[0.2em] uppercase text-muted-foreground/40">
+          Sold Out — No Restock
+        </p>
       )}
       {isComingSoon && (
-        <Button asChild variant="outline" size="sm" className="w-full mt-3">
+        <Button asChild variant="outline" size="sm" className="w-full mt-3 font-mono tracking-[0.1em] text-[10px] uppercase">
           <Link href={`/products/${product.slug}`}>Join Waitlist</Link>
         </Button>
       )}
